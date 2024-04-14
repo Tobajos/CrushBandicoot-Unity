@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float firstJumpSpeed;
     public float secondJumpSpeed;
     public float jumpButtonGracePeriod;
+  
 
     private Animator animator;
     private CharacterController characterController;
@@ -14,7 +15,10 @@ public class PlayerMovement : MonoBehaviour
     private float originalStepOffset;
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
+
     private bool isLanding = false;
+    private bool isAttacking = false;
+    private DynamicBox dynamicBox;
 
 
     private int maxJumpCount = 2;
@@ -25,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
+        dynamicBox = FindObjectOfType<DynamicBox>();
         originalStepOffset = characterController.stepOffset;
     }
 
@@ -33,11 +38,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("e"))
         {
+            Debug.Log("Attacking");
             animator.SetBool("IsAttacking", true);
+            isAttacking = true;
+            dynamicBox.SetIsAttacking(true); // Przekaż informację o ataku do skryptu DynamicBox
         }
         else
         {
             animator.SetBool("IsAttacking", false);
+            isAttacking = false;
+            dynamicBox.SetIsAttacking(false); // Przekaż informację o braku ataku do skryptu DynamicBox
         }
 
 
@@ -73,9 +83,11 @@ public class PlayerMovement : MonoBehaviour
                     ySpeed = secondJumpSpeed; // Ustaw prędkość dla drugiego skoku
                     animator.SetBool("IsDoubleJumping", true);
                     
+
                 }
                 jumpsRemaining--; // Zmniejsz liczbę pozostałych skoków
                 animator.SetBool("IsJumping", true);
+                
 
             }
         }
@@ -110,7 +122,6 @@ public class PlayerMovement : MonoBehaviour
             lastGroundedTime = Time.time;
             animator.SetBool("IsJumping", false);
             //animator.SetBool("IsDoubleJumping", false);
-            Debug.Log(isLanding);
             if (isLanding)
             {
                 //animator.SetBool("IsLanding", true);
@@ -132,4 +143,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+  
 }

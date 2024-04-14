@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4712366814517513489}
   - component: {fileID: 6880942765080730979}
   - component: {fileID: -1722183825150944903}
+  - component: {fileID: 6308689590594277064}
   m_Layer: 0
   m_Name: DynamicBox
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a931ee7656d0bf47baab0becc9e27e0, type: 2}
+  - {fileID: 2100000, guid: 5c31394b48dc6f841bb320ce1e4a2f6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,5 +132,17 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &6308689590594277064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6092314232310879747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 059c7ecf9373323439e374d5da85f565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
