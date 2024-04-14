@@ -4,7 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-    public float jumpSpeed;
+    public float firstJumpSpeed;
+    public float secondJumpSpeed;
     public float jumpButtonGracePeriod;
 
     private Animator animator;
@@ -13,6 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private float originalStepOffset;
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
+    private bool isLanding = false;
+
+
+    private int maxJumpCount = 2;
+    private int jumpsRemaining = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -44,39 +50,74 @@ public class PlayerMovement : MonoBehaviour
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
 
-        if (characterController.isGrounded)
+        if (ySpeed < 0)
         {
-            lastGroundedTime = Time.time;
+
+            ySpeed -= 0.05f;
+            isLanding = true;
+            animator.SetBool("IsDoubleJumping", false);
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            jumpButtonPressedTime = Time.time;
+           
+            if (jumpsRemaining > 0)
+            {
+                jumpButtonPressedTime = Time.time;
+                if (jumpsRemaining == maxJumpCount) // Pierwszy skok
+                {
+                    ySpeed = firstJumpSpeed; // Ustaw prędkość dla pierwszego skoku
+                }
+                else // Drugi skok
+                {
+                    ySpeed = secondJumpSpeed; // Ustaw prędkość dla drugiego skoku
+                    animator.SetBool("IsDoubleJumping", true);
+                    
+                }
+                jumpsRemaining--; // Zmniejsz liczbę pozostałych skoków
+                animator.SetBool("IsJumping", true);
+
+            }
         }
 
-        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod)
+
+        if (Time.time - lastGroundedTime <= jumpButtonGracePeriod && jumpButtonPressedTime != null)
         {
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
-
+            //animator.SetBool("IsLanding", true);
             if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
             {
-                ySpeed = jumpSpeed;
+                ySpeed = firstJumpSpeed;
                 jumpButtonPressedTime = null;
                 lastGroundedTime = null;
             }
         }
         else
         {
-            characterController.stepOffset = 0;
+            characterController.stepOffset = 0;      
         }
-
+        
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = ySpeed;
 
         characterController.Move(velocity * Time.deltaTime);
 
-        
+
+        if (characterController.isGrounded)
+        {
+            jumpsRemaining = maxJumpCount;
+            lastGroundedTime = Time.time;
+            animator.SetBool("IsJumping", false);
+            //animator.SetBool("IsDoubleJumping", false);
+            Debug.Log(isLanding);
+            if (isLanding)
+            {
+                //animator.SetBool("IsLanding", true);
+                isLanding = false; // Resetuj zmienną lądowania
+                animator.SetBool("IsLanding", false);
+            }
+        }
 
         if (movementDirection != Vector3.zero)
         {
@@ -89,5 +130,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsMoving", false);
         }
+
     }
 }
