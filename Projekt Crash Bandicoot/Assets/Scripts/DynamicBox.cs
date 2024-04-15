@@ -2,43 +2,36 @@ using UnityEngine;
 
 public class DynamicBox : MonoBehaviour
 {
-    public GameObject player; // Referencja do obiektu gracza
+    public GameObject player;
 
-    private bool isAttacking = false; // Flaga informuj¹ca, czy gracz atakuje
-    private bool isColliding = false; // Flaga informuj¹ca, czy jest kolizja z graczem
+    private bool isAttacking = false;
+    private bool isColliding = false;
 
     void Update()
     {
-        
-        Debug.Log(isAttacking);
-        // SprawdŸ, czy gracz atakuje
         if (isAttacking && isColliding)
         {
-            Debug.Log("Attacked!");
-            Destroy(gameObject); // Zniszcz skrzynkê
+            Destroy(gameObject);
             isAttacking = false;
         }
     }
 
-    // Funkcja wywo³ywana, gdy inny obiekt wejdzie w kolizjê z t¹ skrzynk¹
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject == player)
+        if (collision.gameObject == player)
         {
-            isColliding = true; // Ustaw flagê kolizji na true
+            isColliding = true;
         }
     }
 
-    // Funkcja wywo³ywana, gdy inny obiekt opuœci kolizjê z t¹ skrzynk¹
-    void OnTriggerExit(Collider other)
+    void OnCollisionExit(Collision collision)
     {
-        if (other.gameObject == player)
+        if (collision.gameObject == player)
         {
-            isColliding = false; // Ustaw flagê kolizji na false
+            isColliding = false;
         }
     }
 
-    // Funkcja do ustawiania flagi ataku przez gracza
     public void SetAttacking(bool attacking)
     {
         isAttacking = attacking;
