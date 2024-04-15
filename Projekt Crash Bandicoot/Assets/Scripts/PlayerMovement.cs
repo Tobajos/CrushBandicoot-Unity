@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float firstJumpSpeed;
     public float secondJumpSpeed;
     public float jumpButtonGracePeriod;
-  
+    public GameObject objectToDestroy;
 
     private Animator animator;
     private CharacterController characterController;
@@ -18,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isLanding = false;
     private bool isAttacking = false;
-    private DynamicBox dynamicBox;
-
+    private bool isColliding = false;
+    private DynamicBox[] boxes;
 
     private int maxJumpCount = 2;
     private int jumpsRemaining = 2;
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        dynamicBox = FindObjectOfType<DynamicBox>();
+        
         originalStepOffset = characterController.stepOffset;
     }
 
@@ -38,17 +39,30 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("e"))
         {
-            Debug.Log("Attacking");
+            
+            boxes = FindObjectsOfType<DynamicBox>();
+
+            // Wywołaj funkcję SetAttacking(true) na wszystkich znalezionych skryptach BoxController
+            foreach (DynamicBox box in boxes)
+            {
+                box.SetAttacking(true);
+            }
             animator.SetBool("IsAttacking", true);
-            isAttacking = true;
-            dynamicBox.SetIsAttacking(true); // Przekaż informację o ataku do skryptu DynamicBox
+            Debug.Log("Attacking");
         }
-        else
+        
+
+        if (!Input.GetKey("e") && boxes != null) // Sprawdzenie, czy klawisz "e" nie jest wciśnięty i czy tablica nie jest pusta
         {
+            
+            // Po zakończeniu ataku, ustaw isAttacking na false dla każdej skrzynki
+            foreach (DynamicBox box in boxes)
+            {
+                box.SetAttacking(false);
+            }
             animator.SetBool("IsAttacking", false);
-            isAttacking = false;
-            dynamicBox.SetIsAttacking(false); // Przekaż informację o braku ataku do skryptu DynamicBox
         }
+
 
 
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -143,5 +157,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-  
+
+
 }
