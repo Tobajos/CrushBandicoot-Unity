@@ -8,8 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public float firstJumpSpeed;
     public float secondJumpSpeed;
     public float jumpButtonGracePeriod;
-    public GameObject objectToDestroy;
-
     private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
@@ -47,12 +45,13 @@ public class PlayerMovement : MonoBehaviour
             }
             animator.SetBool("IsAttacking", true);
 
+
         }
 
 
         if (!Input.GetKey("e") && boxes != null) 
         {
-
+            
             
             foreach (DynamicBox box in boxes)
             {
@@ -155,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
 
 
 }

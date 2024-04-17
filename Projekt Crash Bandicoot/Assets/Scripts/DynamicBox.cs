@@ -14,7 +14,7 @@ public class DynamicBox : MonoBehaviour
             Destroy(gameObject);
             isAttacking = false;
         }
-    }
+    }           
 
     void OnCollisionEnter(Collision collision)
     {
@@ -23,7 +23,7 @@ public class DynamicBox : MonoBehaviour
             isColliding = true;
         }
     }
-
+                                                                                                                    
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject == player)
