@@ -13,7 +13,6 @@
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
-
 Temp/
 Library/
 ExportedObj/
@@ -80,3 +79,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Projekt Crash Bandicoot/Assets/Collectables/Wumpa Fruit/Anaconda3-2024.02-1-Windows-x86_64.exe
+Projekt Crash Bandicoot/Assets/Collectables/Wumpa Fruit/Postman-win64-Setup.exe

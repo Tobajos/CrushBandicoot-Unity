@@ -134,7 +134,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &6922274939480782856
 MonoBehaviour:
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  hitParticle: {fileID: 3839590030559016358, guid: 3579d75fbc3f55d43bdce29da1b1909c, type: 3}
 --- !u!95 &4648930931320689623
 Animator:
   serializedVersion: 5
@@ -183,3 +184,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  hitParticle: {fileID: 0}

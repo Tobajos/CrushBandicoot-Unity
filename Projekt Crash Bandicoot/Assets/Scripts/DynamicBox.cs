@@ -3,6 +3,7 @@ using UnityEngine;
 public class DynamicBox : MonoBehaviour
 {
     public GameObject player;
+    public ParticleSystem hitParticle;
 
     private bool isAttacking = false;
     private bool isColliding = false;
@@ -11,6 +12,7 @@ public class DynamicBox : MonoBehaviour
     {
         if (isAttacking && isColliding)
         {
+            Instantiate(hitParticle, transform.position, transform.rotation);
             Destroy(gameObject);
             isAttacking = false;
         }

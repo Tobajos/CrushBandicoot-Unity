@@ -8,13 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public float firstJumpSpeed;
     public float secondJumpSpeed;
     public float jumpButtonGracePeriod;
+    
     private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
-
+    
     private bool isLanding = false;
     private DynamicBox[] boxes;
 
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("e"))
         {
-
+            
             boxes = FindObjectsOfType<DynamicBox>();
 
             
