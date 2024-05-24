@@ -16,19 +16,19 @@ public class DynamicBox : MonoBehaviour
             Destroy(gameObject);
             isAttacking = false;
         }
-    }           
+    }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject == player)
+        if (other.gameObject == player)
         {
             isColliding = true;
         }
     }
-                                                                                                                    
-    void OnCollisionExit(Collision collision)
+
+    void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject == player)
+        if (other.gameObject == player)
         {
             isColliding = false;
         }
