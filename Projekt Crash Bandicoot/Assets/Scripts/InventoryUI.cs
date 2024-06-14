@@ -3,17 +3,32 @@ using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
-    private TextMeshProUGUI appleText;
-
+    public TextMeshProUGUI appleText;
+    public TextMeshProUGUI healthText;
+    PlayerInventory playerInventory;
     // Start is called before the first frame update
     void Start()
     {
-        appleText = GetComponent<TextMeshProUGUI>();
+        playerInventory = FindObjectOfType<PlayerInventory>();
 
     }
 
+    void Update()
+    {
+        if (playerInventory != null)
+        {
+            UpdateHealthText(playerInventory);
+            UpdateDiamondText(playerInventory);
+        }
+
+    }
     public void UpdateDiamondText(PlayerInventory playerInventory)
     {
         appleText.text = playerInventory.NumberOfApples.ToString();
+    }
+
+    public void UpdateHealthText(PlayerInventory playerInventory)
+    {
+        healthText.text = playerInventory.Health.ToString();
     }
 }
