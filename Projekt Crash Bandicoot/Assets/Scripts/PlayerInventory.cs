@@ -1,14 +1,24 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
+using System.Collections;
+using System.Security.Cryptography;
 
 public class PlayerInventory : MonoBehaviour
 {
     public int NumberOfApples { get; private set; }
 
     public int Health { get; set; } = 3;
-
-   // public UnityEvent<PlayerInventory> OnHealthDecrese;
+    public PlayerMovement player;
+    // public UnityEvent<PlayerInventory> OnHealthDecrese;
     //public UnityEvent<PlayerInventory> OnDiamondCollected;
+
+    void Start()
+    {
+        player = GetComponent<PlayerMovement>();
+
+    }
+
 
     public void AppleCollected()
     {
@@ -16,8 +26,11 @@ public class PlayerInventory : MonoBehaviour
         //OnDiamondCollected.Invoke(this);
     }
 
-    public int OnHealthDecrese()
+    public int OnHealthDecrese(int damage,Vector3 direction)
     {
-        return --Health;
+        player.Knockback(direction);
+        Health -= damage;
+        
+        return Health;
     }
 }

@@ -17,8 +17,9 @@ public class HealthDecrese : MonoBehaviour
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
-            int playerHealth = playerInventory.OnHealthDecrese();
+            
             Vector3 vector3 = new Vector3(targetObject.transform.position.x, targetObject.transform.position.y, targetObject.transform.position.z - 5);
+            int playerHealth = playerInventory.OnHealthDecrese(1, vector3);
             targetObject.transform.position = vector3;
             Debug.Log(playerHealth);
             if (playerHealth == 0)

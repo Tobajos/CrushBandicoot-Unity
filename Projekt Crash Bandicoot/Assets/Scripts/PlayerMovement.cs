@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
@@ -8,14 +9,14 @@ public class PlayerMovement : MonoBehaviour
     public float firstJumpSpeed;
     public float secondJumpSpeed;
     public float jumpButtonGracePeriod;
-    
+    public Transform playerposition;
     private Animator animator;
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
     private float? lastGroundedTime;
     private float? jumpButtonPressedTime;
-    
+    private Vector3 movementDirection;
     private bool isLanding = false;
     private DynamicBox[] boxes;
 
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speed;
         movementDirection.Normalize();
 
@@ -156,6 +157,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public void Knockback(Vector3 direction)
+    {
+        
+        playerposition.position = playerposition.position+(direction * 10);
+        
 
+    }
 
 }
