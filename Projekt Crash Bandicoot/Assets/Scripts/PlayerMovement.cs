@@ -23,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     private int maxJumpCount = 2;
     private int jumpsRemaining = 2;
 
+    private EnemyAI Skeleton12;
+    private EnemyAI Skeleton1;
+    private EnemyAI Skeleton3;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,14 +51,32 @@ public class PlayerMovement : MonoBehaviour
             }
             animator.SetBool("IsAttacking", true);
 
+            EnemyAI[] enemies = FindObjectsOfType<EnemyAI>();
 
+            foreach (EnemyAI enemy in enemies)
+            {
+                enemy.setIsAttacking(true);
+/*                if (enemy.gameObject.name == "Skeleton12")
+                {
+                    Skeleton12 = enemy;
+                    Skeleton12.setIsAttacking(true);
+                }
+                else if (enemy.gameObject.name == "Skeleton1")
+                {
+                    Skeleton1 = enemy;
+                    Skeleton1.setIsAttacking(true);
+                }
+                else if (enemy.gameObject.name == "Skeleton3")
+                {
+                    Skeleton3 = enemy;
+                    Skeleton3.setIsAttacking(true);
+                }    */       
+            }
         }
 
 
         if (!Input.GetKey("e") && boxes != null) 
-        {
-            
-            
+        {    
             foreach (DynamicBox box in boxes)
             {
                 box.SetAttacking(false);
@@ -160,10 +182,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Knockback(Vector3 direction)
     {
-        
+        direction.y = 0;
         playerposition.position = playerposition.position+(direction * 10);
-        
-
     }
 
 }

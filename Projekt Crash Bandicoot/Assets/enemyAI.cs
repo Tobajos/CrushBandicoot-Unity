@@ -22,7 +22,8 @@ public class EnemyAI : MonoBehaviour
 
     public Transform teleportTarget;
     public GameObject targetObject;
-   
+    private bool isAttacking = false;
+    private bool isColliding = false;
 
     private Vector3 initialPosition2;
 
@@ -44,8 +45,15 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        UnityEngine.Debug.Log("OnTriggerEnter called");
-        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+        isColliding = true;
+        //UnityEngine.Debug.Log("OnTriggerEnter called");
+        if(other.gameObject.CompareTag("Player"))
+        {
+            UnityEngine.Debug.Log("TAG PLAYER WORKS");
+        }
+
+
+/*        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
         if (playerInventory != null)
         {
             Vector3 knockbackDirection = (other.transform.position - transform.position).normalized;
@@ -54,20 +62,34 @@ public class EnemyAI : MonoBehaviour
             //int playerHealth = 3;
             UnityEngine.Debug.Log(knockbackDirection);
            
-            
-            
-            
-
             if (playerHealth == 0)
             {
                 other.transform.position = teleportTarget.transform.position;
                 playerInventory.Health = 3;
             }
 
+        }*/
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            isColliding = false;
         }
     }
+
     void Update()
     {
+        
+  
+        if (isAttacking && isColliding)
+        {
+            Destroy(gameObject);
+            isAttacking = false;
+        }
+
+
         playerposition = player.position;
         if (navMeshAgent == null || animator == null)
         {
@@ -91,14 +113,14 @@ public class EnemyAI : MonoBehaviour
                 // Atakowanie gracza
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isAttack", true);
-                
-                //UnityEngine.Debug.Log("Attacing"+ distanceToPlayer);
+
             }
             else
             {
                 // Œciganie gracza
                 animator.SetBool("isRunning", true);
                 animator.SetBool("isAttack", false);
+
                 //UnityEngine.Debug.Log("sciganie"+distanceToPlayer);
             }
         }
@@ -112,13 +134,20 @@ public class EnemyAI : MonoBehaviour
                 // Zatrzymanie siê, gdy wróci do pocz¹tkowej pozycji
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isAttack", false);
+
             }
             else
             {
                 // Powrót do pocz¹tkowej pozycji
                 animator.SetBool("isRunning", true);
                 animator.SetBool("isAttack", false);
+
             }
         }
+    }
+
+    public void setIsAttacking(bool value)
+    {
+        isAttacking = value;
     }
 }
