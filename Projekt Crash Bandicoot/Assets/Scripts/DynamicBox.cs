@@ -12,6 +12,7 @@ public class DynamicBox : MonoBehaviour
     {
         if (isAttacking && isColliding)
         {
+            sounddManager.instance.PlayBoxDestroySound();
             Instantiate(hitParticle, transform.position, transform.rotation);
             Destroy(gameObject);
             isAttacking = false;

@@ -8,6 +8,7 @@ public class Apple : MonoBehaviour
 
         if (playerInventory != null)
         {
+            sounddManager.instance.PlayAppleSound();
             playerInventory.AppleCollected();
             gameObject.SetActive(false);
         }

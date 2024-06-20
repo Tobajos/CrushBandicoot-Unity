@@ -1,14 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class nextLevel : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
+        sounddManager.instance.PlayTeleportSound();
+        StartCoroutine(LoadNextLevelAfterDelay());
+    }
+
+    IEnumerator LoadNextLevelAfterDelay()
+    {
+        // Zatrzymaj wykonanie na 3 sekundy
+        yield return new WaitForSeconds(3f);
+
+        // Za³aduj now¹ scenê po zatrzymaniu
         SceneManager.LoadScene("level2");
-        Debug.Log("nextLevel");
+
+        Debug.Log("nextLevel"); // Mo¿esz tutaj dodatkowo dodaæ log, jeœli potrzebujesz
     }
 }

@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
                     
 
                 }
+                sounddManager.instance.PlayJumpSound();
                 jumpsRemaining--; 
                 animator.SetBool("IsJumping", true);
                 
