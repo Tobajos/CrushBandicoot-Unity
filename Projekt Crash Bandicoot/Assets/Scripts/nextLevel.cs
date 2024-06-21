@@ -6,7 +6,7 @@ public class nextLevel : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        sounddManager.instance.PlayTeleportSound();
+        soundManager.instance.PlayTeleportSound();
         StartCoroutine(LoadNextLevelAfterDelay());
     }
 

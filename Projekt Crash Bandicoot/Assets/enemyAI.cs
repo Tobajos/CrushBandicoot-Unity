@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -81,12 +82,17 @@ public class EnemyAI : MonoBehaviour
 
     void Update()
     {
-        
-  
+
+
         if (isAttacking && isColliding)
         {
-            Destroy(gameObject);
+            animator.SetBool("isDead", true);
+            navMeshAgent.isStopped = true; // Zatrzymaj poruszanie siê
+
+            StartCoroutine(DestroyAfterDelay(10f));
+
             isAttacking = false;
+            return;
         }
 
 
@@ -144,6 +150,12 @@ public class EnemyAI : MonoBehaviour
 
             }
         }
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(gameObject);
     }
 
     public void setIsAttacking(bool value)

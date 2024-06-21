@@ -21,12 +21,7 @@ public class HealthDecrese : MonoBehaviour
             Vector3 vector3 = new Vector3(targetObject.transform.position.x, targetObject.transform.position.y, targetObject.transform.position.z - 5);
             int playerHealth = playerInventory.OnHealthDecrese(1, vector3);
             targetObject.transform.position = vector3;
-            Debug.Log(playerHealth);
-            if (playerHealth == 0)
-            {
-                targetObject.transform.position = teleportTarget.transform.position;
-                playerInventory.Health = 3;
-            }
+          
 
         }
     }

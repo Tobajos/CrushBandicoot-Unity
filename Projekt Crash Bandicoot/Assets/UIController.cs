@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,8 @@ public class UIController : MonoBehaviour
 {
 
     public GameObject[] canvases;
+    public AudioSource appleSource;
+
 
     public void StartButtonPressed()
     {
@@ -37,6 +40,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         ShowCanvas(0);
+        
     }
 
     // Update is called once per frame
