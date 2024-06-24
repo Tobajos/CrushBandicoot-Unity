@@ -20505,8 +20505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   rotationSpeed: 720
-  firstJumpSpeed: 6
-  secondJumpSpeed: 5
+  firstJumpSpeed: 10
+  secondJumpSpeed: 10
   jumpButtonGracePeriod: 0.2
   playerposition: {fileID: 772170165}
 --- !u!143 &772170164
@@ -22804,7 +22804,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14707303, y: 0, z: 0, w: 0.98912567}
-  m_LocalPosition: {x: 902.2425, y: 58.095566, z: 511.66638}
+  m_LocalPosition: {x: 902.2359, y: 58.095566, z: 511.66638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25887,6 +25887,7 @@ MonoBehaviour:
   boxDestroySound: {fileID: 8300000, guid: 5a8f4f4c63af6b941a98e3d6d626f5d6, type: 3}
   jumpSound: {fileID: 8300000, guid: 5783eeddc97d69743936052f4d9a768b, type: 3}
   teleportSound: {fileID: 8300000, guid: 57e96d3a95badab438c50abe1f565b12, type: 3}
+  crashSound: {fileID: 8300000, guid: 38124d6de1e95704a979b38022f24094, type: 3}
 --- !u!82 &1235765491
 AudioSource:
   m_ObjectHideFlags: 0
@@ -34892,7 +34893,7 @@ Transform:
   m_GameObject: {fileID: 1548653362}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14707303, y: -0, z: -0, w: 0.98912567}
-  m_LocalPosition: {x: 902.2425, y: 58.095566, z: 511.66638}
+  m_LocalPosition: {x: 902.2359, y: 58.095566, z: 511.66638}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -37171,7 +37172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673792904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aea7b32e5e4d0b46b2a492bc77e7b3c, type: 3}
+  m_Script: {fileID: 11500000, guid: c0f18b9142d9f9c4e9797acc036f4e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   teleportTarget: {fileID: 883658820}

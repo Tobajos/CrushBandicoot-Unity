@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - FxTemporaire
   - SkeletonWeapon
+  - Sphere
   layers:
   - Default
   - TransparentFX

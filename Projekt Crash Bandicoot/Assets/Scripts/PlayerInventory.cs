@@ -54,7 +54,9 @@ public class PlayerInventory : MonoBehaviour
         player.Knockback(direction);
         Health -= damage;
         Debug.Log("minus");
+        soundManager.instance.PlayCrashSound();
         return Health;
+
     }
 
 

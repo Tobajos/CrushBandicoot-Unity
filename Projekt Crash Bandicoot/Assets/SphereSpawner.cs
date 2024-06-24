@@ -1,43 +1,51 @@
+using System.Collections;
 using UnityEngine;
 
 public class SphereSpawner : MonoBehaviour
 {
-    public GameObject spherePrefab; // Prefab kuli
-    public Transform spawnPoint;    // Punkt spawnu
-    public float spawnInterval = 2f; // Czas miêdzy spawnami w sekundach
-
-    private GameObject currentSphere; // Aktualna kula
-    private float timer;              // Timer do kontrolowania spawnowania
+    public GameObject objectToSpawn; // Obiekt do respawnu
+    public float spawnAreaMinX; // Minimalna wspó³rzêdna X obszaru respawnu
+    public float spawnAreaMaxX; // Maksymalna wspó³rzêdna X obszaru respawnu
+    public float spawnY; // Sta³a wspó³rzêdna Y
+    public float spawnZ; // Sta³a wspó³rzêdna Z
+    public float spawnInterval = 4.0f; // Interwa³ czasowy respawnu
+    public Coroutine spawn;
 
     void Start()
     {
+        spawn = StartCoroutine(SpawnRoutine());
         // Inicjalizacja pierwszej kuli
-        SpawnSphere();
+        //StartCoroutine(SpawnRoutine());
     }
 
-    void Update()
+    //private void Update()
+    //{
+    //    if (spawn != null)
+    //    {
+    //        spawn = null;
+    //        spawn = StartCoroutine(SpawnRoutine());
+    //    }
+    //}
+
+    IEnumerator SpawnRoutine()
     {
-        // Aktualizacja timera
-        timer += Time.deltaTime;
-
-        // Sprawdzenie, czy min¹³ czas do kolejnego spawnu
-        if (timer >= spawnInterval)
-        {
-            // Zresetowanie timera
-            timer = 0f;
-
-            // Spawn nowej kuli i zniszczenie starej
-            if (currentSphere != null)
-            {
-                Destroy(currentSphere);
-            }
-            SpawnSphere();
+        while (true) {
+            yield return new WaitForSeconds(spawnInterval);
+            SpawnObject();
         }
     }
 
-    void SpawnSphere()
+    void SpawnObject()
     {
-        // Spawn nowej kuli
-        currentSphere = Instantiate(spherePrefab, spawnPoint.position, spawnPoint.rotation);
+        // Generowanie losowej wspó³rzêdnej X w obszarze respawnu
+        float randomX = Random.Range(spawnAreaMinX, spawnAreaMaxX);
+        Vector3 spawnPosition = new Vector3(randomX, spawnY, spawnZ);
+
+        // Respawn obiektu
+        Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
     }
+
+    //public void SpawnObject2() { 
+    //    Instantiate()
+    //}
 }
