@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -425,7 +426,8 @@ MonoBehaviour:
   - {fileID: 113363704}
   - {fileID: 1611160384}
   - {fileID: 57912259}
-  appleSource: {fileID: 940516073}
+  soundSource: {fileID: 940516073}
+  musicSource: {fileID: 229365775}
 --- !u!1 &151876104
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,6 +2633,7 @@ MonoBehaviour:
   boxDestroySound: {fileID: 8300000, guid: 5a8f4f4c63af6b941a98e3d6d626f5d6, type: 3}
   jumpSound: {fileID: 8300000, guid: 5783eeddc97d69743936052f4d9a768b, type: 3}
   teleportSound: {fileID: 8300000, guid: 57e96d3a95badab438c50abe1f565b12, type: 3}
+  crashSound: {fileID: 0}
 --- !u!1 &975919884
 GameObject:
   m_ObjectHideFlags: 0

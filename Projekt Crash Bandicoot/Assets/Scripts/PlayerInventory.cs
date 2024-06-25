@@ -5,15 +5,14 @@ using System.Collections;
 using System.Security.Cryptography;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.XR;
+using System.Diagnostics;
 
 public class PlayerInventory : MonoBehaviour
 {
     public int NumberOfApples { get; private set; }
-    public UIController uiController;
     public int Health { get; set; } = 3;
     public PlayerMovement player;
-    public GameObject teleportTarget;
-    public InventoryUI inventoryUI;
+    private InventoryUI inventoryUI;
 
     // public UnityEvent<PlayerInventory> OnHealthDecrese;
     //public UnityEvent<PlayerInventory> OnDiamondCollected;
@@ -53,8 +52,8 @@ public class PlayerInventory : MonoBehaviour
     {
         player.Knockback(direction);
         Health -= damage;
-        Debug.Log("minus");
         soundManager.instance.PlayCrashSound();
+
         return Health;
 
     }

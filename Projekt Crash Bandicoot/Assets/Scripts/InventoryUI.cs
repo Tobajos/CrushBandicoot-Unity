@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI healthText;
     PlayerInventory playerInventory;
     public GameObject panel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,14 +40,19 @@ public class InventoryUI : MonoBehaviour
     public void ShowGameOverPanel()
     {
     
-        Debug.Log("asd");
         panel.SetActive(true);
+        soundManager.instance.GameOverSound();
 
     }
 
     public void buttonClicked() {
-        Debug.Log("essa");
-       
         SceneManager.LoadScene("MainMenu");
+       
+    }
+
+    public void NextLevelButtonClicked()
+    {
+        SceneManager.LoadScene("level2");
+
     }
 }

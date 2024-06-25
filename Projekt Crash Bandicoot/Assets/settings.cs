@@ -12,6 +12,14 @@ public class settings : MonoBehaviour
     public Slider slider;
     public Slider musicSlider;
 
+    void Start()
+    {
+        slider.value = PlayerPrefs.GetFloat("GlobalFloat", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicFloat", 1f);
+
+    }
+
+
     public void SaveSliderValue()
     {
         sliderValue = slider.value;

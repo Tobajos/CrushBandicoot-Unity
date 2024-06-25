@@ -12,6 +12,7 @@ public class soundManager : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip teleportSound;
     public AudioClip crashSound;
+    public AudioClip gameover;
     private float sliderValue;
 
     private void Awake()
@@ -55,5 +56,12 @@ public class soundManager : MonoBehaviour
         soundSource.volume = sliderValue;
         soundSource.PlayOneShot(crashSound);
     }
+
+    public void GameOverSound()
+    {
+        soundSource.volume = sliderValue;
+        soundSource.PlayOneShot(gameover);
+    }
+
 
 }

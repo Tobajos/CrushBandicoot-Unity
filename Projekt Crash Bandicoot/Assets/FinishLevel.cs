@@ -1,15 +1,16 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class nextLevel : MonoBehaviour
+public class FinishLevel : MonoBehaviour
 {
     public GameObject[] canvases;
 
 
     void Start()
     {
-        ShowCanvas(1);
+        ShowCanvas(0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,7 +34,7 @@ public class nextLevel : MonoBehaviour
 
         // Za³aduj now¹ scenê po zatrzymaniu
         //SceneManager.LoadScene("level2");
-        ShowCanvas(0);
-        Debug.Log("nextLevel"); // Mo¿esz tutaj dodatkowo dodaæ log, jeœli potrzebujesz
+        ShowCanvas(1);
+       
     }
 }

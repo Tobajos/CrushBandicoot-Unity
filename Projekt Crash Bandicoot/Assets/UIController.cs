@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,12 @@ public class UIController : MonoBehaviour
 {
 
     public GameObject[] canvases;
-    public AudioSource appleSource;
+    public AudioSource soundSource;
+    public AudioSource musicSource;
+    private float soundVolume;
+    private float musicVolume;
+
+
 
 
     public void StartButtonPressed()
@@ -40,7 +46,14 @@ public class UIController : MonoBehaviour
     void Start()
     {
         ShowCanvas(0);
-        
+        UnityEngine.Debug.Log(soundVolume);
+        UnityEngine.Debug.Log(musicVolume);
+        soundVolume = PlayerPrefs.GetFloat("GlobalFloat", 1f);
+        musicVolume = PlayerPrefs.GetFloat("MusicFloat", 1f);
+        soundSource.volume = soundVolume;
+        musicSource.volume = musicVolume;
+
+
     }
 
     // Update is called once per frame
