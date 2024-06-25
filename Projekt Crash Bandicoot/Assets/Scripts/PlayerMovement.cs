@@ -19,20 +19,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementDirection;
     private bool isLanding = false;
     private DynamicBox[] boxes;
-
+    public GameObject panel;
     private int maxJumpCount = 2;
     private int jumpsRemaining = 2;
 
     private EnemyAI Skeleton12;
     private EnemyAI Skeleton1;
     private EnemyAI Skeleton3;
-
+    private bool isActive = false;
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        
+        panel.SetActive(isActive);
         originalStepOffset = characterController.stepOffset;
     }
 
@@ -84,7 +84,20 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsAttacking", false);
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isActive = !isActive;
+            panel.SetActive(isActive);
 
+            if (isActive)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
 
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
